@@ -1,0 +1,18 @@
+c:\users\angela\documents\visual studio 2015\Projects\BinF6\BinF6\bin\Debug\BinF6.exe.config
+C:\Users\Angela\Documents\Visual Studio 2015\Projects\BinF6\BinF6\bin\Debug\BinF6.exe
+C:\Users\Angela\Documents\Visual Studio 2015\Projects\BinF6\BinF6\bin\Debug\BinF6.pdb
+C:\Users\Angela\Documents\Visual Studio 2015\Projects\BinF6\BinF6\obj\Debug\BinF6.csprojResolveAssemblyReference.cache
+C:\Users\Angela\Documents\Visual Studio 2015\Projects\BinF6\BinF6\obj\Debug\BinF6.crossRateComboBox.resources
+C:\Users\Angela\Documents\Visual Studio 2015\Projects\BinF6\BinF6\obj\Debug\BinF6.Properties.Resources.resources
+C:\Users\Angela\Documents\Visual Studio 2015\Projects\BinF6\BinF6\obj\Debug\BinF6.csproj.GenerateResource.Cache
+C:\Users\Angela\Documents\Visual Studio 2015\Projects\BinF6\BinF6\obj\Debug\BinF6.exe
+C:\Users\Angela\Documents\Visual Studio 2015\Projects\BinF6\BinF6\obj\Debug\BinF6.pdb
+C:\Users\JAT\Desktop\Programação\BinF6\BinF6\bin\Debug\BinF6.exe.config
+C:\Users\JAT\Desktop\Programação\BinF6\BinF6\obj\Debug\BinF6.exe
+C:\Users\JAT\Desktop\Programação\BinF6\BinF6\obj\Debug\BinF6.pdb
+C:\Users\JAT\Desktop\Programação\BinF6\BinF6\bin\Debug\BinF6.exe
+C:\Users\JAT\Desktop\Programação\BinF6\BinF6\bin\Debug\BinF6.pdb
+C:\Users\JAT\Desktop\Programação\BinF6\BinF6\obj\Debug\BinF6.csprojResolveAssemblyReference.cache
+C:\Users\JAT\Desktop\Programação\BinF6\BinF6\obj\Debug\BinF6.crossRateComboBox.resources
+C:\Users\JAT\Desktop\Programação\BinF6\BinF6\obj\Debug\BinF6.Properties.Resources.resources
+C:\Users\JAT\Desktop\Programação\BinF6\BinF6\obj\Debug\BinF6.csproj.GenerateResource.Cache
