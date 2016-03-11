@@ -12,6 +12,7 @@ namespace BinF6
         private Chromosome[] popAux;
 
         public Evolution evolution;
+        public Writer writer;
 
         private double mutationRate, crossoverRate, bestFit;
         private int popSize, elit;
@@ -22,6 +23,7 @@ namespace BinF6
 
 
         public Controller(String mutRate, String crossRate, String popSize, int elit, String bestFit) {
+            writer = new Writer();
             this.elit = elit;
             error = false;
             try
@@ -29,7 +31,7 @@ namespace BinF6
                 mutationRate = double.Parse(mutRate);
                 crossoverRate = double.Parse(crossRate);
                 this.bestFit = double.Parse(bestFit);
-                Console.WriteLine("cross/mut/fit" + crossoverRate + " " + mutationRate + " " + this.bestFit + "Parsing Doubles - controller"); 
+                writer.writer.WriteLine("cross/mut/fit" + crossoverRate + " " + mutationRate + " " + this.bestFit + "Parsing Doubles - controller"); 
             }
             catch (FormatException e) {
                 exception = "Rates must be doubles.";
@@ -53,7 +55,7 @@ namespace BinF6
                 Console.WriteLine("Generating pop - controller ");
                 generatePop();
                 Console.WriteLine("Evolving - controller");
-                evolution = new Evolution(pop, popAux, mutationRate, crossoverRate, this.bestFit, this.popSize);
+                evolution = new Evolution(pop, popAux, mutationRate, crossoverRate, this.bestFit, this.popSize, writer.writer);
                 exception = "No Errors";
             }
 
@@ -65,8 +67,9 @@ namespace BinF6
             Console.WriteLine("Pop and popAux created - controller");
 
             for (int i = 0; i < popSize; i++) {
-                pop[i]   = new Chromosome(true);
-                popAux[i] = new Chromosome(false);
+                writer.writer.Write(i + " _ ");
+                pop[i]   = new Chromosome(true, writer.writer);
+                popAux[i] = new Chromosome(false, writer.writer);
                 Console.WriteLine("chrom aux " + i + "Created - controller");
 
             }

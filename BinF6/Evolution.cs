@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace BinF6
 {
@@ -21,12 +22,15 @@ namespace BinF6
         public int intCount { get; set; }
         public int bestGene { get; set; }
         public int popSize { get; set; }
+        
+        public StreamWriter writer { get; set; }
 
         public Evolution(Chromosome[] pop, Chromosome[] popAux, double mutationRate, double crossoverRate, 
-            double bestFit, int popSize) {
+            double bestFit, int popSize, StreamWriter writer) {
 
             rg = new Random();
 
+            this.writer = writer;
             this.pop           = pop;
             this.popAux        = popAux;
             this.crossoverRate = crossoverRate;
@@ -42,14 +46,19 @@ namespace BinF6
         }
 
         public void evolve() {
-            while (bestFitness < bestFit) {
+            bool running = true;
+            while (bestFitness < bestFit && running) {
                 Console.WriteLine("Evolution count: "+ intCount + " - evolution");
+                writer.WriteLine(" ");
+                writer.WriteLine("Evolution count: " + intCount);
                 setFitness();
                 crossover();
                 completePop();
                 mutate();
                 updatePop();
                 intCount++;
+
+                if (bestFitness >= bestFit) { running = false; }
             }
         }
 
@@ -75,6 +84,8 @@ namespace BinF6
             }
             Console.WriteLine("Fitness: avg = " + avgFitness + " best = " + bestFitness 
                 + " worst = " + worstFitness + " - evolution "+intCount);
+            writer.WriteLine("Fitness: avg = " + avgFitness + " best = " + bestFitness
+                + " worst = " + worstFitness + " - evolution " + intCount);
         }
 
         private int tournament() {

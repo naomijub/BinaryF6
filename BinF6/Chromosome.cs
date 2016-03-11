@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace BinF6
 {
@@ -12,8 +13,10 @@ namespace BinF6
         public double x { get; set; }
         public double y { get; set; }
         public double fitness { get; set; }
+        public StreamWriter writer { get; set; }
 
-        public Chromosome(bool aux) {
+        public Chromosome(bool aux, StreamWriter writer) {
+            this.writer = writer;
             if (aux) { constructor(); }
             else { auxConstructor(); }
         }
@@ -24,8 +27,9 @@ namespace BinF6
             for (int i = 0; i < gene.Length; i++)
             {
                 gene[i] = randNumber(i) % 2;
-                Console.Write(gene[i]+" ");
+                writer.Write(gene[i]+" ");
             }
+            writer.WriteLine(" ");
             Console.WriteLine(" - Chromosome");
             setFitness();
         }
@@ -47,7 +51,8 @@ namespace BinF6
             double mant = Math.Pow(Math.Sin(Math.Sqrt(xy)), 2);
 
             fitness = 0.5 - ((mant - 0.5) / (1 + (0.001 * xy * xy)));
-            Console.WriteLine(fitness + " - Chromosome"); 
+            Console.WriteLine(fitness + " - Chromosome");
+            writer.WriteLine("Fitness : " + fitness );
         }
 
         private void setXY() {
@@ -60,6 +65,7 @@ namespace BinF6
 
             x = (sumX / 20971.51) - 100;
             Console.Write("X: " + x + " ");
+            writer.Write("X : " + x + " ");
 
             for (int i = 22; i < 44; i++)
             {
@@ -68,6 +74,7 @@ namespace BinF6
 
             y = (sumY / 20971.51) - 100;
             Console.WriteLine("Y: " + y + " - Chromosome");
+            writer.Write("Y : " + y + " ");
         }
 
         public int getGeneI(int i) {
