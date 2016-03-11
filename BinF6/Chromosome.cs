@@ -23,7 +23,7 @@ namespace BinF6
 
             for (int i = 0; i < gene.Length; i++)
             {
-                gene[i] = randNumber() % 2;
+                gene[i] = randNumber(i) % 2;
                 Console.Write(gene[i]+" ");
             }
             Console.WriteLine(" - Chromosome");
@@ -35,12 +35,10 @@ namespace BinF6
             Console.WriteLine("Aux constructor  - Chromosome");
         }
 
-        private int randNumber() {
-            Random rg = new Random();
-            //DateTime now = DateTime.Now;
-            //int maxRange = int.Parse(now.ToString("mmss"));
+        private int randNumber(int i) {
+            Random rg = new Random((int)Math.Pow((int)(DateTime.Now.Millisecond), i));
 
-            return rg.Next(0, 131);    
+            return rg.Next((int)(DateTime.Now.Second) - i,  (int)(DateTime.Now.Second) + i);    
         }
 
         public void setFitness() {
@@ -60,7 +58,7 @@ namespace BinF6
                 sumX += gene[i] * (Math.Pow(2.0, i));
             }
 
-            x = (sumX / 20971.5) - 100;
+            x = (sumX / 20971.51) - 100;
             Console.Write("X: " + x + " ");
 
             for (int i = 22; i < 44; i++)
@@ -68,7 +66,7 @@ namespace BinF6
                 sumY += gene[i] * (Math.Pow(2.0, (i - 22)));
             }
 
-            y = (sumY / 20971.5) - 100;
+            y = (sumY / 20971.51) - 100;
             Console.WriteLine("Y: " + y + " - Chromosome");
         }
 
