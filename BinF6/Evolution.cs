@@ -22,11 +22,12 @@ namespace BinF6
         public int intCount { get; set; }
         public int bestGene { get; set; }
         public int popSize { get; set; }
+        public int elit { get; set; }
         
         public StreamWriter writer { get; set; }
 
         public Evolution(Chromosome[] pop, Chromosome[] popAux, double mutationRate, double crossoverRate, 
-            double bestFit, int popSize, StreamWriter writer) {
+            double bestFit, int popSize, int elit, StreamWriter writer) {
 
             rg = new Random();
 
@@ -37,6 +38,7 @@ namespace BinF6
             this.mutationRate  = mutationRate;
             this.bestFit       = bestFit;
             this.popSize = popSize;
+            this.elit = elit;
 
             Console.WriteLine("Pop size: " + popSize + " cross rate: " + crossoverRate + " Mut rate: " + mutationRate);
 
@@ -131,11 +133,40 @@ namespace BinF6
 
         private void mutate() {
             Console.WriteLine("Mutation started - evolution");
-            for (int i = 0; i < popSize; i++) {
-                for (int g = 0; g < 44; g++) {
+            if (elit == 0)
+            {
+                regularMutation();
+            }
+            else {
+                elitismMutation();
+            }
+        }
+
+        public void regularMutation() {
+            for (int i = 0; i < popSize; i++)
+            {
+                for (int g = 0; g < 44; g++)
+                {
                     int randMutation = rg.Next(0, 100);
                     double mutationSize = mutationRate * 100;
-                    if (randMutation < (mutationSize)) {
+                    if (randMutation < (mutationSize))
+                    {
+                        int auxGene = rg.Next(0, (131 + (g * i))) % 2;
+                        popAux[i].setGeneI(g, auxGene);
+                    }
+                }
+            }
+        }
+
+        public void elitismMutation() {
+            for (int i = 0; i < (popSize - 1); i++)
+            {
+                for (int g = 0; g < 44; g++)
+                {
+                    int randMutation = rg.Next(0, 100);
+                    double mutationSize = mutationRate * 100;
+                    if (randMutation < (mutationSize))
+                    {
                         int auxGene = rg.Next(0, (131 + (g * i))) % 2;
                         popAux[i].setGeneI(g, auxGene);
                     }
@@ -144,10 +175,28 @@ namespace BinF6
         }
 
         private void updatePop() {
-            for (int i = 0; i < popSize; i++) {
+            switch (elit) {
+                case 0: regular(); break;
+                case 1: elitism(); break;
+                default: regular(); break;
+            }
+
+            Console.WriteLine("update pop  - evolution");
+        }
+
+        private void regular() {
+            for (int i = 0; i < popSize; i++)
+            {
                 pop[i].gene = popAux[i].gene;
             }
-            Console.WriteLine("update pop  - evolution");
+        }
+
+        private void elitism() {
+            for (int i = 0; i < (popSize - 1); i++)
+            {
+                pop[i].gene = popAux[i].gene;
+            }
+            pop[(popSize - 1)].gene = pop[bestGene].gene;
         }
     }
 }

@@ -55,7 +55,7 @@ namespace BinF6
                 Console.WriteLine("Generating pop - controller ");
                 generatePop();
                 Console.WriteLine("Evolving - controller");
-                evolution = new Evolution(pop, popAux, mutationRate, crossoverRate, this.bestFit, this.popSize, writer.writer);
+                evolution = new Evolution(pop, popAux, mutationRate, crossoverRate, this.bestFit, this.popSize, this.elit, writer.writer);
                 exception = "No Errors";
             }
 
