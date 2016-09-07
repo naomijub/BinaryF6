@@ -23,7 +23,7 @@ namespace BinF6
         private void startButton_Click(object sender, EventArgs e)
         {
             checkElitism();
-            controller = new Controller(mutRateComboBox.Text, crossRateBox.Text, popSizeBox.Text, elit, fitnessBox.Text);
+            controller = new Controller(mutRateComboBox.Text, crossRateBox.Text, popSizeBox.Text, elit, fitnessBox.Text, prefCountComboBox.Text);
             Console.WriteLine("Controller Created");
             if (controller.error)
             {
@@ -35,6 +35,7 @@ namespace BinF6
             else
             {
                 Console.WriteLine("Starting COntroller");
+                commentBox.Text = "Program started...";
                 controller.start();
                 commentBox.Text = "Program running";
                 Console.WriteLine("Updating Values");
@@ -52,6 +53,16 @@ namespace BinF6
             Elitism.Checked = false;
             mutPref.Checked = false;
             secBestPref.Checked = false;
+            bestFitBox.Text = " ";
+            avgFitBox.Text = " ";
+            worstFitBox.Text = " ";
+            geneBox.Text = " ";
+            intCount.Text = " ";
+            if (controller != null)
+            {
+                controller.Finalizer();
+                controller = null;
+            }
             Console.WriteLine("Reset Button");
 
 
@@ -72,9 +83,9 @@ namespace BinF6
         }
 
         public void updateViewValues() {
-            bestFitBox.Text = controller.getEvolve().bestFitness.ToString();
-            avgFitBox.Text = controller.getEvolve().avgFitness.ToString();
-            worstFitBox.Text = controller.getEvolve().worstFitness.ToString();
+            bestFitBox.Text = controller.getEvolve().bestFitness.ToString().Substring(0,10);
+            avgFitBox.Text = controller.getEvolve().avgFitness.ToString().Substring(0, 10);
+            worstFitBox.Text = controller.getEvolve().worstFitness.ToString().Substring(0, 10);
             geneBox.Text = controller.getEvolve().pop.ElementAt<Chromosome>(controller.getEvolve().bestGene).toString();
             intCount.Text = controller.getEvolve().intCount.ToString();
             checkError();

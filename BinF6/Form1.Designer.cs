@@ -54,6 +54,8 @@
             this.commentBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.fitnessBox = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.prefCountComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // startButton
@@ -331,11 +333,40 @@
             this.fitnessBox.TabIndex = 25;
             this.fitnessBox.Text = "0,999";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(12, 391);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(57, 13);
+            this.label9.TabIndex = 26;
+            this.label9.Text = "Pref Count";
+            // 
+            // prefCountComboBox
+            // 
+            this.prefCountComboBox.AllowDrop = true;
+            this.prefCountComboBox.FormattingEnabled = true;
+            this.prefCountComboBox.Items.AddRange(new object[] {
+            "3",
+            "5",
+            "8",
+            "10",
+            "12",
+            "15",
+            "20"});
+            this.prefCountComboBox.Location = new System.Drawing.Point(12, 408);
+            this.prefCountComboBox.Name = "prefCountComboBox";
+            this.prefCountComboBox.Size = new System.Drawing.Size(90, 21);
+            this.prefCountComboBox.TabIndex = 27;
+            this.prefCountComboBox.Text = "5";
+            // 
             // crossRateComboBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(919, 550);
+            this.Controls.Add(this.prefCountComboBox);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.fitnessBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.commentBox);
@@ -397,6 +428,8 @@
         private System.Windows.Forms.TextBox commentBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox fitnessBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox prefCountComboBox;
     }
 }
 

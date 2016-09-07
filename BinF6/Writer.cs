@@ -13,7 +13,7 @@ namespace BinF6
 
         public Writer() {
             string folderPath = @"C:\BinaryF6Data";
-            string fileName = "BinaryF6_" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.DayOfYear + "_" +
+            string fileName = "BinaryF6_" + DateTime.Now.Year + "-" + DateTime.Now.Month + "-" + DateTime.Now.Day + "__" +
                 DateTime.Now.Hour + "-" + DateTime.Now.Minute;
 
             try { 

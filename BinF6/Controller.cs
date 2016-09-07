@@ -15,14 +15,15 @@ namespace BinF6
         public Writer writer;
 
         private double mutationRate, crossoverRate, bestFit;
-        private int popSize, elit;
+        private int popSize, elit, prefCount;
 
         public bool error;
 
         public String exception { get; set; }
 
 
-        public Controller(String mutRate, String crossRate, String popSize, int elit, String bestFit) {
+        public Controller(String mutRate, String crossRate, String popSize, int elit, String bestFit,
+            string prefCount) {
             writer = new Writer();
             this.elit = elit;
             error = false;
@@ -42,6 +43,7 @@ namespace BinF6
             try
             {
                 this.popSize = Int32.Parse(popSize);
+                this.prefCount = int.Parse(prefCount);
                 Console.WriteLine("Parsing popSize - controller");
             }
             catch (FormatException e) {
@@ -55,7 +57,8 @@ namespace BinF6
                 Console.WriteLine("Generating pop - controller ");
                 generatePop();
                 Console.WriteLine("Evolving - controller");
-                evolution = new Evolution(pop, popAux, mutationRate, crossoverRate, this.bestFit, this.popSize, this.elit, writer.writer);
+                evolution = new Evolution(pop, popAux, mutationRate, crossoverRate, this.bestFit, this.popSize, 
+                    this.elit, writer.writer, this.prefCount);
                 exception = "No Errors";
             }
 
@@ -84,6 +87,13 @@ namespace BinF6
 
         public Evolution getEvolve() {
             return evolution;
+        }
+
+        public void Finalizer() {
+            evolution = null;
+            for (int i = 0; i < popSize; i++) {
+                pop[i] = null;
+            }
         }
     }
 }
